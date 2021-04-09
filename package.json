@@ -1,0 +1,8 @@
+{
+  "name": "instagram",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/aureuneun/instagram-backend.git",
+  "author": "aureuneun <aureuneun@gmail.com>",
+  "license": "MIT"
+}
