@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "target":"ES5",
+    "allowJs": false,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
