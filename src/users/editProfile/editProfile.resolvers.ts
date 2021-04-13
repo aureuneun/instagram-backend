@@ -1,3 +1,4 @@
+import { createWriteStream } from 'fs';
 import { hash } from 'bcrypt';
 import { Resolvers } from '../../types';
 import { protectedResolver } from '../users.utils';
@@ -7,10 +8,16 @@ const resolvers: Resolvers = {
     editProfile: protectedResolver(
       async (
         _,
-        { firstName, lastName, username, email, password },
+        { firstName, lastName, username, email, password, bio, avatar },
         { loggedInUser, client }
       ) => {
         try {
+          const { filename, createReadStream } = await avatar;
+          const readStram = createReadStream();
+          const writeStream = createWriteStream(
+            process.cwd() + '/uploads/' + filename
+          );
+          readStram.pipe(writeStream);
           let hashedPassword = null;
           if (password) {
             hashedPassword = await hash(password, 10);
@@ -22,6 +29,7 @@ const resolvers: Resolvers = {
               lastName,
               username,
               email,
+              bio,
               ...(hashedPassword && { password: hashedPassword }),
             },
           });
