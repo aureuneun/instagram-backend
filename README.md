@@ -4,3 +4,4 @@
 - [x] seeProfile
 - [x] login
 - [x] editProfile
+- [x] change avatar 

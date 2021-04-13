@@ -12,12 +12,17 @@ const resolvers: Resolvers = {
         { loggedInUser, client }
       ) => {
         try {
-          const { filename, createReadStream } = await avatar;
-          const readStram = createReadStream();
-          const writeStream = createWriteStream(
-            process.cwd() + '/uploads/' + filename
-          );
-          readStram.pipe(writeStream);
+          let avatarUrl = null;
+          if (avatar) {
+            const { filename, createReadStream } = await avatar;
+            const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
+            const readStram = createReadStream();
+            const writeStream = createWriteStream(
+              process.cwd() + '/uploads/' + newFilename
+            );
+            readStram.pipe(writeStream);
+            avatarUrl = `http://localhost:4000/static/${newFilename}`;
+          }
           let hashedPassword = null;
           if (password) {
             hashedPassword = await hash(password, 10);
@@ -30,6 +35,7 @@ const resolvers: Resolvers = {
               username,
               email,
               bio,
+              ...(avatarUrl && { avatar: avatarUrl }),
               ...(hashedPassword && { password: hashedPassword }),
             },
           });
