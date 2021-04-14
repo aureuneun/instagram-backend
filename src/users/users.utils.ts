@@ -1,5 +1,6 @@
 import { verify } from 'jsonwebtoken';
 import client from '../client';
+import { Resolver } from '../types';
 
 export const getUser = async (token: string) => {
   try {
@@ -16,7 +17,7 @@ export const getUser = async (token: string) => {
   }
 };
 
-export function protectedResolver(ourResolver) {
+export function protectedResolver(ourResolver: Resolver): Resolver {
   return function (root, args, context, info) {
     if (!context.loggedInUser) {
       return {
