@@ -9,3 +9,5 @@
 - [x] unfollow user
 - [x] see followers with Offset pagination
 - [x] see following with Cursor-based pagination
+- [x] computed fields
+- [ ] search users
