@@ -10,4 +10,4 @@
 - [x] see followers with Offset pagination
 - [x] see following with Cursor-based pagination
 - [x] computed fields
-- [ ] search users
+- [x] search users with Cursor-based pagination
