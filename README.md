@@ -11,3 +11,14 @@
 - [x] see following with Cursor-based pagination
 - [x] computed fields
 - [x] search users with Cursor-based pagination
+
+## photos
+
+- [x] upload photo
+- [x] seePhoto
+- [x] seeHashtag
+- [x] searchPhoto
+- [x] editPhoto
+- [x] like/unlike photo
+- [x] seePhotoLikes
+- [x] seeFeed
