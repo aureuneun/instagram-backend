@@ -22,3 +22,18 @@
 - [x] like/unlike photo
 - [x] seePhotoLikes
 - [x] seeFeed
+- [x] seePhotoComments
+- [x] deletePhoto
+
+## comments
+
+- [x] createComment
+- [x] deleteComment
+- [x] editComment
+
+## refactor
+- [ ] Mutation Responses
+
+## extras
+
+- [ ] s3 Image upload
