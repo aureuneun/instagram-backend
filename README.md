@@ -32,7 +32,7 @@
 - [x] editComment
 
 ## refactor
-- [ ] Mutation Responses
+- [x] Mutation Responses
 
 ## extras
 
