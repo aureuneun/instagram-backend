@@ -36,4 +36,4 @@
 
 ## extras
 
-- [ ] s3 Image upload
+- [x] s3 Image upload
