@@ -1,3 +1,5 @@
+import { NEW_MESSAGE } from '../../constants';
+import pubsub from '../../pubsub';
 import { Resolvers } from '../../types';
 import { protectedResolver } from '../../users/users.utils';
 
@@ -49,7 +51,7 @@ const resolvers: Resolvers = {
               };
             }
           }
-          await client.message.create({
+          const message = await client.message.create({
             data: {
               payload,
               user: {
@@ -64,6 +66,7 @@ const resolvers: Resolvers = {
               },
             },
           });
+          pubsub.publish(NEW_MESSAGE, { roomUpdates: message });
           return { ok: true };
         } catch (error) {
           return { ok: false, error: 'Could not send message' };

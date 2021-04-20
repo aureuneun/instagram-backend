@@ -45,4 +45,4 @@
 - [x] See Room
 - [x] computed fields
 - [x] See (Read) Message
-- [ ] Realtime Messages
+- [x] Realtime Messages
