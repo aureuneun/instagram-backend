@@ -16,10 +16,17 @@ const resolvers: Resolvers = {
           photoId: id,
         },
       }),
-    comments: ({ id }, _, { client }) =>
+    commentNumber: ({ id }, _, { client }) =>
       client.comment.count({
         where: {
           photoId: id,
+        },
+      }),
+    comments: ({ id }, _, { client }) =>
+      client.comment.findMany({
+        where: { photoId: id },
+        include: {
+          user: true,
         },
       }),
     isMine: ({ userId }, _, { loggedInUser }) => {
@@ -27,6 +34,20 @@ const resolvers: Resolvers = {
         return false;
       }
       return userId === loggedInUser.id;
+    },
+    isLiked: async ({ id }, _, { loggedInUser, client }) => {
+      const like = await client.like.findUnique({
+        where: {
+          photoId_userId: {
+            photoId: id,
+            userId: loggedInUser.id,
+          },
+        },
+      });
+      if (like) {
+        return true;
+      }
+      return false;
     },
   },
   Hashtag: {
