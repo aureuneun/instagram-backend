@@ -3,6 +3,8 @@
     "preserveConstEnums": true,
     "target":"ES5",
     "allowJs": false,
+    "outDir": "dist",
+    "esModuleInterop":true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
