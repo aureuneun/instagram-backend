@@ -3,7 +3,7 @@ import { protectedResolver } from '../../users/users.utils';
 
 const resolvers: Resolvers = {
   Query: {
-    seeFeed: protectedResolver((_, __, { loggedInUser, client }) =>
+    seeFeed: protectedResolver((_, { offset }, { loggedInUser, client }) =>
       client.photo.findMany({
         where: {
           OR: [
@@ -24,6 +24,8 @@ const resolvers: Resolvers = {
         orderBy: {
           createdAt: 'desc',
         },
+        take: 5,
+        skip: offset,
       })
     ),
   },

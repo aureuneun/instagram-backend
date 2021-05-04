@@ -13,13 +13,27 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async ({ req, connection }) => {
-    const token = connection
-      ? connection.context['Authorization']
-      : req.headers['authorization'];
+    if (connection) {
+      return {
+        loggedInUser: connection.context['loggedInUser'],
+        client,
+      };
+    }
+    const token = req.headers['authorization'];
     return {
       loggedInUser: await getUser(token),
       client,
     };
+  },
+  subscriptions: {
+    onConnect: async (params) => {
+      const token = params['Authorization'];
+      if (!token) {
+        throw new Error("You can't listen.");
+      }
+      const loggedInUser = await getUser(token);
+      return { loggedInUser };
+    },
   },
 });
 

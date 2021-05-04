@@ -67,7 +67,7 @@ const resolvers: Resolvers = {
             },
           });
           pubsub.publish(NEW_MESSAGE, { roomUpdates: message });
-          return { ok: true };
+          return { ok: true, id: message.id };
         } catch (error) {
           return { ok: false, error: 'Could not send message' };
         }
